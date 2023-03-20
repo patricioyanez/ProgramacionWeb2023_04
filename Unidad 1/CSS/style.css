@@ -18,3 +18,17 @@ h3{
     background: white;
     text-align: center;
 }
+.pConBorde{
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+.cambioBorde{
+    border-color: red;
+    border-width: 10px;
+    border-style: solid;
+    padding-top: 20px;
+    padding-bottom: 30px;
+
+    margin-top: 50px;
+}
