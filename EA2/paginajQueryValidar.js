@@ -13,7 +13,12 @@ $(function()
             alert('Falta el dv');
             $('.txtDv').focus();
         }
-        else if(!$('.txtNombre').val())
+        else if(! esValidoElRut($('.txtRut').val(),$('.txtDv').val()))
+        {
+            alert('El rut no es válido');
+            $('.txtRut').focus();
+        }
+        else if(!$.trim($('.txtNombre').val()))
         {
             alert('Falta el nombre');
             $('.txtNombre').focus();
@@ -59,4 +64,28 @@ $(function()
         if(letras.indexOf(caracter)<0) // verifica si el caracter esta en el patrón
             return false; // evita que se escriba el caracter presionado
     });
+
+    function esValidoElRut(Rut,Digito)
+    {
+        Digito = Digito.toUpperCase();
+		var longitud        = Rut.length;
+		var factor          = 2;
+		var sumaProducto    = 0;
+		var con             = 0;
+		var caracter     	= 0;
+ 
+		for( con=longitud-1; con>=0; con--)
+		{
+			caracter = Rut.charAt(con);
+			sumaProducto += (factor * caracter);
+			if (++factor > 7)
+				factor=2;		
+		}
+ 
+        var digitoAuxiliar	= 11-(sumaProducto % 11);   
+        var caracteres		= "-123456789K0";
+        var digitoCaracter= caracteres.charAt(digitoAuxiliar);
+        return digitoCaracter == Digito ? 1 : 0;            
+    } 
+
 })
