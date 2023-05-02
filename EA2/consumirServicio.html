@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de Api Rest</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $(".btnVerCategorias").click(function() {
+                $.get("https://www.themealdb.com/api/json/v1/1/categories.php", function(i, item)
+                {
+
+                });
+            });
+        });
+    </script>    
+</head>
+<body>
+    <button class="btnVerCategorias">Ver categorías</button>
+    <table border="1" class="tblCategorias">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>
