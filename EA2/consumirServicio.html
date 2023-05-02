@@ -9,9 +9,18 @@
     <script>
         $(function() {
             $(".btnVerCategorias").click(function() {
-                $.get("https://www.themealdb.com/api/json/v1/1/categories.php", function(i, item)
+                $.get("https://www.themealdb.com/api/json/v1/1/categories.php", 
+                function(data)
                 {
-
+                    $.each(data.categories, function(i, item)
+                    {
+                        $(".tblCategorias").append(
+                            '<tr><td>' + item.idCategory +
+                                '<td><img src="' + item.strCategoryThumb + '">' +
+                                '<td>' + item.strCategory +
+                                '<td>' + item.strCategoryDescription + '</tr>'
+                        );
+                    })
                 });
             });
         });
