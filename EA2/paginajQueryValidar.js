@@ -67,12 +67,12 @@ $(function()
 
     function esValidoElRut(Rut,Digito)
     {
+		let con             = Rut.length-1;
 		let factor          = 2;
 		let sumaProducto    = 0;
-		let con             = 0;
 		let caracter     	= 0;
  
-		for( con=Rut.length-1; con>=0; con--)
+		for( ;con>=0 ;con-- )
 		{
 			caracter = Rut.charAt(con);
 			sumaProducto += (factor * caracter);
