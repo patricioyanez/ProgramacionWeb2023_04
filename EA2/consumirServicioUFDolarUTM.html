@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de Api Rest</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $(".btnIndicadores").click(function() {        
+                $.getJSON('https://mindicador.cl/api', 
+                function(data) {
+                    $(".txtUf").val(data.uf.valor);
+                    $(".txtFecha").val(data.fecha.substring(0,10));
+                    $(".txtDolar").val(data.dolar.valor);
+                    $(".txtUTM").val(data.utm.valor);
+                }).fail(function() {
+                    console.log('Error al consumir la API!');
+                });
+            });
+        });
+        // OTRA PARA EL TIEMPO(CLIMA) y conversor de $cl a dolar, euro y arg
+    </script>    
+</head>
+<body>
+    <button class="btnIndicadores">Ver indicadores</button><br>
+    <label for="txtUf">Fecha </label>
+    <input type="date" class="txtFecha"><br>
+    <label for="txtUf">Valor Uf</label>
+    <input type="text" class="txtUf"><br>
+    <label for="txtDolar">Valor Dolar</label>
+    <input type="text" class="txtDolar"><br>
+    <label for="txtUTM">Valor UTM</label>
+    <input type="text" class="txtUTM"><br>
+</body>
+</html>
