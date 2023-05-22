@@ -13,6 +13,11 @@ cd carpetaProyecto
 
 django-admin startproject nombreProyecto
 
- cd nombreProyecto
+cd nombreProyecto
  
- py manage.py runserver
+py manage.py runserver
+
+
+##### Crear usuario admin de django
+py manage.py createsuperuser
+
