@@ -27,9 +27,6 @@ class Cliente(models.Model):
 
 
 
-
-
-
 class Marca(models.Model):
     id_marca= models.AutoField(db_column='idMarca', primary_key=True)
     nombre = models.CharField(max_length=20, blank=False, null=False)
