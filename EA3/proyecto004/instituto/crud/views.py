@@ -50,6 +50,8 @@ def genero(request):
     return render(request, 'genero.html', context)
 
 
+
+### ejercicio: Crear crud con plantillas para el modelo MARCA
 def marca(request):
     marcas = Marca.objects.all() # select * from Genero
     context = {"marcas": marcas}
