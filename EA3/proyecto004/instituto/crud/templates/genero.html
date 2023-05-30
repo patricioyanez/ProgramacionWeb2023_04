@@ -2,7 +2,21 @@
 {% extends "plantillaBase.html" %}
 {% block tituloPestana %} Admin. Género{% endblock %}
 {% block titulo %} Género {% endblock %}
-{% block mensaje %} {% endblock %}
+{% block mensaje %} 
+    {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    {% if exito %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ exito }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+{% endblock %}
 {% block contenido %} 
     <form method="POST" action="{% url 'genero' %}">
         {% csrf_token %}
@@ -27,18 +41,19 @@
     </form>
 {% endblock %}
 {% block listado %} 
-
-        <table class="table table-reponsive table-striped table-bordered mt-3">
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-            </tr>
-    {% for genero in listado %}
-            <tr>
-                <td>{{ genero.id_genero }}</td>
-                <td>{{ genero.nombre | capfirst }}</td>
-            </tr>      
-            
-    {% endfor %}
-        </table>
+    {% if listado %}
+            <table class="table table-reponsive table-striped table-bordered mt-3">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+        {% for genero in listado %}
+                <tr>
+                    <td>{{ genero.id_genero }}</td>
+                    <td>{{ genero.nombre | capfirst }}</td>
+                </tr>      
+                
+        {% endfor %}
+            </table>
+    {% endif %}
 {% endblock %}

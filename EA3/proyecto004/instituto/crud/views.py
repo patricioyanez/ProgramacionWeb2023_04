@@ -18,19 +18,31 @@ def genero(request):
         if 'Grabar' in request.POST: # fue presionado el boton Grabar
             if id == 0: # insert
                 Genero.objects.create(nombre=nombre)
+                context = {'exito': 'Los datos fueron guardados con éxito.'}
             else: # update
-                item = Genero.objects.get(pk=id)
-                item.nombre = nombre
-                item.save()
+                try:
+                    item = Genero.objects.get(pk=id)
+                    item.nombre = nombre
+                    item.save()
+                    context = {'exito': 'Los datos fueron guardados con éxito.'}
+                except:                    
+                    context = {'error': 'Error en la modificación.'}
         elif 'Listar' in request.POST: # select * from genero
             listado = Genero.objects.all()
             context = {'listado': listado}
         elif 'Buscar' in request.POST: # select * from genero where...
-            item = Genero.objects.get(pk=id)
-            context = {'item': item}
+            try:
+                item = Genero.objects.get(pk=id)
+                context = {'item': item}
+            except:
+                context = {'error': 'Error en la búsqueda.'}
         elif 'Eliminar' in request.POST: # delete
-            item = Genero.objects.get(pk=id)
-            item.delete()
+            try:
+                item = Genero.objects.get(pk=id)
+                item.delete()
+                context = {'exito': 'Registro eliminado.'}
+            except:
+                context = {'error': 'Error en la eliminación.'}
 
 
 
