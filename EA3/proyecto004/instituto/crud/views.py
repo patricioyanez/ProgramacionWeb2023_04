@@ -18,13 +18,19 @@ def genero(request):
         if 'Grabar' in request.POST: # fue presionado el boton Grabar
             if id == 0: # insert
                 Genero.objects.create(nombre=nombre)
-            else:
+            else: # update
                 item = Genero.objects.get(pk=id)
                 item.nombre = nombre
                 item.save()
-        elif 'Listar' in request.POST:
+        elif 'Listar' in request.POST: # select * from genero
             listado = Genero.objects.all()
             context = {'listado': listado}
+        elif 'Buscar' in request.POST: # select * from genero where...
+            item = Genero.objects.get(pk=id)
+            context = {'item': item}
+        elif 'Eliminar' in request.POST: # delete
+            item = Genero.objects.get(pk=id)
+            item.delete()
 
 
 
