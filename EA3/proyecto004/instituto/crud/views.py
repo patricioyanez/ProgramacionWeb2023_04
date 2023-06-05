@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Genero, Marca
+from .models import Genero, Marca,Categoria
 # Create your views here.
 
 """def genero(request):
@@ -94,3 +94,46 @@ def marca(request):
             except:
                 context = {'error': 'Error en la eliminación.'}
     return render(request, 'marca.html', context)
+
+def categoria(request):
+    context = {}
+
+    if request.method == 'POST':
+        id      = int("0" + request.POST['id'])
+        nombre  = request.POST['nombre']
+
+        # print(id, nombre)
+        if 'Grabar' in request.POST: # fue presionado el boton Grabar
+            if len(nombre) == 0:
+                context = {'error': 'Error en el ingreso de datos.'}
+            else:
+                if id == 0: # insert
+                    Categoria.objects.create(nombre=nombre)
+                    context = {'exito': 'Los datos fueron guardados con éxito.'}
+                else: # update
+                    try:
+                        item = Categoria.objects.get(pk=id)
+                        item.nombre = nombre
+                        item.save()
+                        context = {'exito': 'Los datos fueron guardados con éxito.'}
+                    except:                    
+                        context = {'error': 'Error en la modificación.'}
+            
+        elif 'Listar' in request.POST: # select * from genero
+            listado = Categoria.objects.all()
+            context = {'listado': listado}
+        elif 'Buscar' in request.POST: # select * from genero where...
+            try:
+                item = Categoria.objects.get(pk=id)
+                context = {'item': item}
+            except:
+                context = {'error': 'Error en la búsqueda.'}
+        elif 'Eliminar' in request.POST: # delete
+            try:
+                item = Categoria.objects.get(pk=id)
+                item.delete()
+                context = {'exito': 'Registro eliminado.'}
+            except:
+                context = {'error': 'Error en la eliminación.'}
+    return render(request, 'categoria.html', context)
+
