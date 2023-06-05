@@ -1,7 +1,7 @@
 {# permite dejar un comentario  #}
 {% extends "plantillaBase.html" %}
-{% block tituloPestana %} Admin. Género{% endblock %}
-{% block titulo %} Género {% endblock %}
+{% block tituloPestana %} Admin. Cliente{% endblock %}
+{% block titulo %} Cliente {% endblock %}
 {% block mensaje %} 
     {% if error %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -18,24 +18,18 @@
 
 {% endblock %}
 {% block contenido %} 
-    <form method="POST" action="{% url 'genero' %}">
+    <form method="POST" action="{% url 'clienteForm' %}">
         {% csrf_token %}
-        <div class="row">
-            <div class="col-2 offset-2">Id</div>
-            <div class="col-5"><input type="text" name="id" class="form-control" value="{{ item.id_genero }}"></div>
-        </div>
-        <div class="row">
-            <div class="col-2 offset-2">Nombre</div>
-            <div class="col-5"><input type="text" name="nombre" class="form-control" value="{{ item.nombre }}"></div>
-        </div>
+        <center>
+            <table>
+                {{form.as_table}}
+            </table>
+        <center>
         <br>
         <div class="row">
             <div class="col-2 offset-2">Opciones</div>
             <div class="col-5">
-                <input type="submit" name="Grabar" value="Grabar" class="btn btn-danger">    
-                <input type="submit" name="Listar" value="Listar" class="btn btn-success">    
-                <input type="submit" name="Buscar" value="Buscar" class="btn btn-warning">    
-                <input type="submit" name="Eliminar" value="Eliminar" class="btn btn-primary">    
+                <input type="submit" name="Grabar" value="Grabar" class="btn btn-danger">  
             </div>
         </div>
     </form>
@@ -49,7 +43,7 @@
                 </tr>
         {% for fila in listado %}
                 <tr>
-                    <td>{{ fila.id_genero }}</td>
+                    <td>{{ fila.id_marca }}</td>
                     <td>{{ fila.nombre | capfirst }}</td>
                 </tr>      
                 

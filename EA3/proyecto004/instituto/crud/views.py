@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Genero, Marca,Categoria
+from .forms import ClienteForm
 # Create your views here.
 
 """def genero(request):
@@ -49,10 +50,7 @@ def genero(request):
                 context = {'error': 'Error en la eliminación.'}
     return render(request, 'genero.html', context)
 
-
-
 ### ejercicio: Crear crud con plantillas para el modelo MARCA
-
 def marca(request):
     context = {}
 
@@ -137,3 +135,16 @@ def categoria(request):
                 context = {'error': 'Error en la eliminación.'}
     return render(request, 'categoria.html', context)
 
+def clienteForm(request):
+    context = {}
+    if request.method == 'POST':
+        if 'Grabar' in request.POST:
+            form = ClienteForm(request.POST)
+            if form.is_valid():
+                form.save()
+                context = {'exito': 'Los datos fueron guardados con éxito.', 'form' : ClienteForm()}
+            else:
+                context = {'error': 'Error en el ingreso de datos.'}
+    else:
+        context = { 'form' : ClienteForm()}
+    return render(request, 'clienteForm.html', context)
