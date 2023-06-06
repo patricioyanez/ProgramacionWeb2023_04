@@ -6,4 +6,5 @@ urlpatterns = [
     path('marca', views.marca, name="marca"), # ejercicio crear form para marca y categoria
     path('categoria', views.categoria, name="categoria"), 
     path('clienteForm', views.clienteForm, name="clienteForm"), 
+    path('menu', views.menu, name="menu"),
 ]

@@ -8,6 +8,9 @@ from .forms import ClienteForm
     context = {"generos": generos}
     return render(request, 'genero.html', context)"""
 
+def menu(request):
+    return render(request, 'menu.html')
+
 def genero(request):
     context = {}
 

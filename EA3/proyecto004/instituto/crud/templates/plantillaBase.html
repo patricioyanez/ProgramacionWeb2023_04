@@ -19,6 +19,7 @@
                 <img src="{% static 'Images/icono.png' %}" alt="No disponible" width="20%" height="20%">
                 PC-Ntbk
               </a>
+{% if user.is_authenticated %}
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -41,7 +42,14 @@
                       <li><a class="dropdown-item" href="{% url 'categoria' %}">Categoría</a></li>
                       <li><a class="dropdown-item" href="{% url 'clienteForm' %}">Cliente</a></li>
                     </ul>
-                  </li>                 
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">{{ user.username }}</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  </li>
+{% endif %}
                 </ul>                
               </div>
             </div>
