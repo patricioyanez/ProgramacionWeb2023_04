@@ -1,6 +1,14 @@
 from django.shortcuts import render
+# importar los modelos
 from .models import Genero, Marca,Categoria
+
+# importar los decoradores de auth de django
+from django.contrib.auth.decorators import login_required
+
+#importar los Forms (django Forms)
 from .forms import ClienteForm
+
+#
 # Create your views here.
 
 """def genero(request):
@@ -8,9 +16,11 @@ from .forms import ClienteForm
     context = {"generos": generos}
     return render(request, 'genero.html', context)"""
 
+@login_required
 def menu(request):
     return render(request, 'menu.html')
 
+@login_required
 def genero(request):
     context = {}
 
@@ -54,6 +64,7 @@ def genero(request):
     return render(request, 'genero.html', context)
 
 ### ejercicio: Crear crud con plantillas para el modelo MARCA
+@login_required
 def marca(request):
     context = {}
 
@@ -96,6 +107,7 @@ def marca(request):
                 context = {'error': 'Error en la eliminación.'}
     return render(request, 'marca.html', context)
 
+@login_required
 def categoria(request):
     context = {}
 
@@ -138,6 +150,7 @@ def categoria(request):
                 context = {'error': 'Error en la eliminación.'}
     return render(request, 'categoria.html', context)
 
+@login_required
 def clienteForm(request):
     context = {}
     if request.method == 'POST':
