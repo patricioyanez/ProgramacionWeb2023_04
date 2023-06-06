@@ -8,7 +8,11 @@ from django.contrib.auth.decorators import login_required
 #importar los Forms (django Forms)
 from .forms import ClienteForm
 
-#
+
+# ejercicio: Crear crud con plantillas para el modelo MARCA
+# Ejercicio 2: Crear el modelo y el Django Forms para el Producto
+# Ejercicio 3: Preguntar antes de logout, si esta seguro de hacerlo
+
 # Create your views here.
 
 """def genero(request):
@@ -63,7 +67,7 @@ def genero(request):
                 context = {'error': 'Error en la eliminación.'}
     return render(request, 'genero.html', context)
 
-### ejercicio: Crear crud con plantillas para el modelo MARCA
+
 @login_required
 def marca(request):
     context = {}
